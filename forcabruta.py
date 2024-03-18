@@ -76,16 +76,16 @@ def testar(matriz, nome_arquivo):   #aplica as funções nas matrizes
     print(f"Custo Total Força Bruta: {custo_total_forca_bruta}")
 
 # Carregar as matrizes
-matriz_adj_att48 = carregar_matriz_adj('bases/att48_d.txt')
-matriz_adj_dantzig42 = carregar_matriz_adj('bases/dantzig42_d.txt')
-matriz_adj_fri26 = carregar_matriz_adj('bases/fri26_d.txt')
-matriz_adj_gr17 = carregar_matriz_adj('bases/gr17_d.txt')
 matriz_adj_p01 = carregar_matriz_adj('bases/p01_d.txt')
+matriz_adj_gr17 = carregar_matriz_adj('bases/gr17_d.txt')
+matriz_adj_fri26 = carregar_matriz_adj('bases/fri26_d.txt')
+matriz_adj_dantzig42 = carregar_matriz_adj('bases/dantzig42_d.txt')
+matriz_adj_att48 = carregar_matriz_adj('bases/att48_d.txt')
 
 # Testar as matrizes
 print("\nTestando as matrizes:")
-testar(matriz_adj_att48, "att48")
-testar(matriz_adj_dantzig42, "dantzig42")
-testar(matriz_adj_fri26, "fri26")
-testar(matriz_adj_gr17, "gr17")
 testar(matriz_adj_p01, "p01")
+testar(matriz_adj_gr17, "gr17")
+testar(matriz_adj_fri26, "fri26")
+testar(matriz_adj_dantzig42, "dantzig42")
+testar(matriz_adj_att48, "att48")

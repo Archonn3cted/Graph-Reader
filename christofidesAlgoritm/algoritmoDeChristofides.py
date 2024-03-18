@@ -51,19 +51,19 @@ def escolhaBaseDeDados():
     print("-=="*20)
     escolha = str(input('Digite a letra da respectiva base de dados que deseja analisar: ')).strip().upper()
     if escolha == 'A':
-        basedeDados = "C:/Users/Rangell/OneDrive/Documentos/christofidesAlgoritm/Bases/att48_d.txt"
+        basedeDados = "bases/att48_d.txt"
         return basedeDados
     if escolha == 'B':
-        basedeDados = "C:/Users/Rangell/OneDrive/Documentos/christofidesAlgoritm/Bases/dantzig42_d.txt"
+        basedeDados = "bases/dantzig42_d.txt"
         return basedeDados
     if escolha == 'C':
-        basedeDados = "C:/Users/Rangell/OneDrive/Documentos/christofidesAlgoritm/Bases/fri26_d.txt"
+        basedeDados = "bases/fri26_d.txt"
         return basedeDados
     if escolha == 'D':
-        basedeDados = "C:/Users/Rangell/OneDrive/Documentos/christofidesAlgoritm/Bases/gr17_d.txt"
+        basedeDados = "bases/gr17_d.txt"
         return basedeDados
     if escolha == 'E':
-        basedeDados = "C:/Users/Rangell/OneDrive/Documentos/christofidesAlgoritm/Bases/p01_d.txt"
+        basedeDados = "bases/p01_d.txt"
         return basedeDados
     else:
         print('-=='*10)

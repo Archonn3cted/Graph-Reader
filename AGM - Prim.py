@@ -82,11 +82,11 @@ def calcularLimiteInferior(nomeArquivo):
     return limiteInferior, pesoAGM, tempoExecucao
 
 #Para testar os arquivos, deixa com "#" as variável "arquivo_tsp" que não pretende usar e deixa sem a variável que pretende usar
-arquivoTSP = "bases/att48.tsp"
+#arquivoTSP = "bases/att48.tsp"
 #arquivoTSP = "bases/dantzig42.tsp"
 #arquivoTSP = "bases/fri26.tsp"
 #arquivoTSP = "bases/gr17.tsp"
-#arquivoTSP = "bases/p01.tsp"
+arquivoTSP = "bases/p01.tsp"
 
 # Extrair o nome do arquivo sem o caminho
 nomeBase = os.path.basename(arquivoTSP)
