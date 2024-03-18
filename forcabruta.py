@@ -1,7 +1,7 @@
 import timeit
 import numpy as np
 from sys import maxsize
-import sys
+from itertools import permutations
 
 def calcular_custo(caminho, matriz):    # calcula o custo do caminho
     custo = 0
@@ -10,36 +10,44 @@ def calcular_custo(caminho, matriz):    # calcula o custo do caminho
     custo += matriz[caminho[-1]][caminho[0]]  
     return custo
 
-def forca_bruta(distances, n): #aplica a algoritmo de força bruta
-    min_distance = maxsize
-    min_path = []
+def forca_bruta(grafo, inicio):
+    # Salvando os vértices
+    vertices = []
+    for vert in range(len(grafo)):
+        if vert != inicio:
+            vertices.append(vert)
 
-    def tsp_helper(path, visited, current_node, remaining_nodes, total_distance): #carteiro viajante
-        nonlocal min_distance, min_path
+    prox = permutations(vertices)
+    caminhoAtual = maxsize
 
-        if len(remaining_nodes) == 0:
-            total_distance += distances[current_node][path[0]]
-            if total_distance < min_distance:
-                min_distance = total_distance
-                min_path = path[:] + [path[0]]
+    # Fazendo o cálculo de custo
+    for vert in prox:
+        custoAtual = 0
+        x = inicio
 
-        for node in remaining_nodes:
-            if node not in visited:
-                new_distance = total_distance + distances[current_node][node]
-                if new_distance < min_distance:
-                    visited.add(node)
-                    tsp_helper(path + [node], visited, node, remaining_nodes - {node}, new_distance)
-                    visited.remove(node)
+        for aresta in vert:
+            custoAtual += float(grafo[x][aresta])
+            x = aresta
+        custoAtual += float(grafo[x][inicio])
+        caminhoMin = min(caminhoAtual, custoAtual)
 
-    for i in range(n):
-        tsp_helper([i], {i}, i, set(range(n)) - {i}, 0)
+        if caminhoMin < caminhoAtual:
+            caminhoAtual = min(caminhoAtual, custoAtual)
+            aux = vert
 
-    return min_distance, min_path
+    # Decidindo o melhor caminho
+    melhorCaminho = []
+    for vert in aux:
+        melhorCaminho.append(vert)
+
+    melhorCaminho.insert(0, inicio)
+    melhorCaminho.append(inicio)
+
+    return caminhoAtual, melhorCaminho
 
 def carregar_matriz_adj(nome_arquivo): #carrega os dados txt em formato de matriz de adjacência
     with open(nome_arquivo, "r") as arquivo:
         linhas = arquivo.readlines()
-
 
     linhas = [linha.strip() for linha in linhas if linha.strip()]
 
@@ -51,11 +59,15 @@ def carregar_matriz_adj(nome_arquivo): #carrega os dados txt em formato de matri
         for j, valor in enumerate(valores):
             matriz_adj[i][j] = int(valor)  
     
+    # Imprimir a matriz
+    print("Matriz gerada:")
+    print(matriz_adj)
+    
     return matriz_adj
 
 def testar(matriz, nome_arquivo):   #aplica as funções nas matrizes
     inicio_total = timeit.default_timer()  
-    custo_total_forca_bruta, _ = forca_bruta(matriz, len(matriz))    
+    custo_total_forca_bruta, _ = forca_bruta(matriz, 0)    
     fim_total = timeit.default_timer()  
     tempo_total = (fim_total - inicio_total)   
         
